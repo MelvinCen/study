@@ -1,0 +1,10 @@
+01:
+1,创建maven项目
+2，删除src，让此项目为父工程
+3，添加mybatis/mysql驱动/junit依赖
+4，创建子module
+5，编写mybatis核心配置文件，在resource下新建mybatis-config.xml
+6,创建获取SqlSession工具类
+7,开始编写测试代码
+8,CRUD,增删改需要提交事务，commit
+
