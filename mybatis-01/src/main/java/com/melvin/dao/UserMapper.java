@@ -5,6 +5,7 @@ import com.melvin.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserMapper {
     //查询全部
@@ -13,6 +14,7 @@ public interface UserMapper {
     User getUserById(@Param("id")int id);
     //增加一个user
     int addUser(@Param("user")User user);
+    int addUser2(Map<String,Object> map);
     //修改用户
     int updateUser(@Param("user")User user);
     //根据id删除用户

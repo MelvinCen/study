@@ -4,6 +4,9 @@
     <insert id="addUser" parameterType="com.melvin.pojo.User">
         insert into mybatis.user (id,name,pwd) values (#{user.id},#{user.name},#{user.pwd});
     </insert>
+    <insert id="addUser2" parameterType="map">
+        insert into mybatis.user (id,name,pwd) values (#{userId},#{userName},#{userPwd});
+    </insert>
     <update id="updateUser" parameterType="com.melvin.pojo.User">
         update mybatis.user set name = #{user.name}, pwd = #{user.pwd} where id = #{user.id};
     </update>

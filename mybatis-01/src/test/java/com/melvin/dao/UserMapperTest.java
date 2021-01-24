@@ -5,7 +5,9 @@ import com.melvin.utils.MyBatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserMapperTest {
 
@@ -53,6 +55,30 @@ public class UserMapperTest {
         user.setName("哈哈");
         user.setPwd("123444");
         int result = mapper.addUser(user);
+        if (result > 0) {
+            System.out.println("插入成功");
+        } else {
+            System.out.println("插入失败");
+        }
+        //事务提交!!!!!
+        sqlSession.commit();
+        sqlSession.close();
+
+
+    }
+
+    //增删改需要提交事务
+    @Test
+    public void addUser2() {
+
+        SqlSession sqlSession = MyBatisUtils.getSqlSession();
+
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        Map<String,Object> map = new HashMap<>();
+        map.put("userId",4);
+        map.put("userName","哈哈哈");
+        map.put("userPwd","456123");
+        int result = mapper.addUser2(map);
         if (result > 0) {
             System.out.println("插入成功");
         } else {
