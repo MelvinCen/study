@@ -1,10 +1,27 @@
-01:
-1,创建maven项目
+01：
+1，创建maven项目
 2，删除src，让此项目为父工程
 3，添加mybatis/mysql驱动/junit依赖
 4，创建子module
 5，编写mybatis核心配置文件，在resource下新建mybatis-config.xml
-6,创建获取SqlSession工具类
-7,开始编写测试代码
-8,CRUD,增删改需要提交事务，commit
+6，创建获取SqlSession工具类
+7，新建实体类，对应mapper，在mybatis-config.xml下注册mapper
+8，开始编写测试代码
+9，CRUD,增删改需要提交事务，commit
+02：
+1，主要是抽取数据库连接的信息，编写db.properties文件，然后在mybatis-config.xml中使用“${}”方式引入
+2，在mybatis-config.xml中使用“typeAliases”标签给实体类别名，方便其他地方使用，特别是mapper中
+03：
+1，当实体类属性名称和数据库表字段不一致时，需要在mapper中使用resultMap来映射字段
+04：
+1，指定 MyBatis 所用日志的具体实现，STDOUT_LOGGING是自带的，设置即可，mybatis-config.xml下设置setting
+2，配置log4j，加入maven依赖，编写log4j.properties
+3，使用sql实现分页，limit
+4，使用RowBounds实现分页
+05：
+1，使用注解实现查询数据库数据
+2，getSqlSession方法的重载方法可以传autoCommit参数，自动提交事务，就不需要手动调用了。
+
+
+
 
