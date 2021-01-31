@@ -4,6 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--核心配置文件-->
 <mapper namespace="com.melvin.dao.StudentMapper">
+    <!--按照结果嵌套处理-->
+    <select id="getStudents2" resultMap="StudentTeacher2">
+        select s.id sid,s.name sname,t.name tname from student s,teacher t where s.tid = t.id;
+    </select>
+
+    <resultMap id="StudentTeacher2" type="Student">
+        <result property="id" column="sid"/>
+        <result property="name" column="sname"/>
+        <association property="teacher" javaType="Teacher">
+            <result property="name" column="tname"/>
+        </association>
+    </resultMap>
+
+
+
+    <!--子查询-->
     <select id="getStudents" resultMap="StudentTeacher">
         select * from student;
     </select>

@@ -22,6 +22,19 @@ public class UserMapperTest {
         sqlSession.close();
     }
 
+    @Test
+    public void getStudents2() {
+
+        SqlSession sqlSession = MyBatisUtils.getSqlSession();
+        StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+        List<Student> students = studentMapper.getStudents2();
+        for (Student student : students) {
+            System.out.println(student);
+        }
+
+        sqlSession.close();
+    }
+
 
 
 }
