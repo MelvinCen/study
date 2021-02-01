@@ -5,4 +5,56 @@
 <!--核心配置文件-->
 <mapper namespace="com.melvin.dao.BlogMapper">
 
+    <sql id="if-title-author">
+        <if test="title != null">
+            and title = #{title}
+        </if>
+        <if test="author != null">
+            and author = #{author}
+        </if>
+    </sql>
+
+    <insert id="addBlog" parameterType="Blog">
+        insert into blog (id,title,author,create_time,views) values (#{id},#{title},#{author},#{createTime},#{views});
+    </insert>
+
+    <select id="queryBlogIf" resultType="com.melvin.pojo.Blog" parameterType="map">
+        select * from blog where 1=1
+        <include refid="if-title-author"></include>
+    </select>
+    <select id="queryBlogChoose" resultType="com.melvin.pojo.Blog" parameterType="map">
+        select * from blog
+        <where>
+            <choose>
+                <when test="title != null">
+                    title = #{title}
+                </when>
+                <when test="author != null">
+                   and author = #{author}
+                </when>
+                <when test="views != null">
+                    and views = #{views}
+                </when>
+
+            </choose>
+        </where>
+    </select>
+    <update id="updateBlog" parameterType="map">
+        update blog
+        <set>
+            <if test="title != null">title = #{title},</if>
+            <if test="author != null">author = #{author},</if>
+            <if test="views != null">views = #{views},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="queryBlogForeach" resultType="com.melvin.pojo.Blog" parameterType="map">
+        select * from blog
+        <where>
+            <foreach collection="ids" item="id" open="and (" close=")" separator="or">
+               id = #{id}
+            </foreach>
+        </where>
+    </select>
 </mapper>
