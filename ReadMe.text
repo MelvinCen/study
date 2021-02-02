@@ -26,6 +26,10 @@
 2，一个对应多个，collection标签，可以使用子查询或链表查询
 08：
 1，where标签，if标签，set标签等等
+09：
+1，mybatis默认开启了以及缓存，在sqlSession关闭前有效。  sqlSession级别
+2，开启二级缓存，需要在mybatis-config.xml下设置setting，并在mapper中配置<cache/>标签，可以自定义参数设置，机制是当sqlSession关闭后会将缓存放入耳机缓存。 mapper级别
+3，使用第三方ehcache，导包，在mapper中cache标签下配置type（org.mybatis.caches.ehcache.EhcacheCache）
 
 
 
